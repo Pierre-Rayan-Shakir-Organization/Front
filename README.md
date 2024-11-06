@@ -2,6 +2,45 @@
 
 ![License](https://img.shields.io/badge/license-Apache%202.0-blue.svg)
 
++++
+# Instructions pour l'installation et le démarrage du projet Front
 
-# Front
-Front 
+## Étape 1 : Cloner le dépôt API SPRING Test
+
+1. **Cloner le dépôt GitHub** dans le répertoire parent du projet. Utilisez la commande suivante dans votre terminal :
+
+    ```bash
+    git clone https://github.com/Pierre-Rayan-Shakir-Organization/API-SPRING-test
+    ```
+
+## Étape 2 : Installer les dépendances du projet Front
+
+1. **Accédez à la racine du projet Front** en utilisant la commande suivante :
+
+    ```bash
+    cd <chemin-vers-le-projet-front>
+    ```
+
+2. **Installer les modules et dépendances** en exécutant la commande suivante :
+
+    ```bash
+    npm install
+    ```
+
+## Étape 3 : Démarrer l’application
+
+1. **Lancer l'application** avec la commande suivante :
+
+    ```bash
+    npm start
+    ```
+
+2. **Accéder à l'application** en ouvrant votre navigateur et en vous rendant à l'adresse suivante :
+
+    ```plaintext
+    http://localhost:4000
+    ```
+
+---
+
++++
