@@ -23,6 +23,8 @@ export default function FormulaireInscription() {
         };
 
         try {
+            console.log("DATA" + data);
+
             const url = "http://localhost:3000/signup";
             await axios.post(url, data);
             //router.push('/connexion');
@@ -42,6 +44,7 @@ export default function FormulaireInscription() {
                     placeholder="Le"
                     value={prenom}
                     onChange={(e) => setPrenom(e.target.value)} 
+                    
                 />
             </label>
 
