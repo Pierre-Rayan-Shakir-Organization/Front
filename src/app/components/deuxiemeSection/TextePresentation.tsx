@@ -40,7 +40,7 @@ export default async function TextePresentation() {
     try {
         musique = await fetchData();
     } catch (error) {
-        return <div>prout.</div>;
+        return <div>test</div>;
     }
 
     // Vérification si fetchData a bien renvoyé des données valides
