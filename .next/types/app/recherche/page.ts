@@ -1,4 +1,4 @@
-// File: C:\Users\pierr\Documents\nodejs\fivemusics\nextjs\nextjs\fivemusics-frontend\src\app\recherche\page.tsx
+// File: D:\MASTER1\DEVOPS\Front\src\app\recherche\page.tsx
 import * as entry from '../../../../src/app/recherche/page.js'
 import type { ResolvingMetadata, ResolvingViewport } from 'next/dist/lib/metadata/types/metadata-interface.js'
 
