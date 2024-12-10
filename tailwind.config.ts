@@ -1,4 +1,4 @@
-import type { Config } from "tailwindcss";
+import type { Config } from "tailwindcss"; 
 import daisyui from 'daisyui';
 
 const config: Config = {
@@ -16,11 +16,13 @@ const config: Config = {
       },
     },
   },
+  darkMode: 'class', // Active le mode sombre basé sur une classe
   plugins: [
     daisyui
   ],
-  daisyui : {
-    themes : ['dark']
-  }
+  daisyui: {
+    themes: ['light', 'dark'], // Définit les thèmes disponibles
+  },
 };
+
 export default config;
