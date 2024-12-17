@@ -1,6 +1,6 @@
 'use client';
 
-import Image from "next/image.tsx"
+import Image from "next/image"
 import AudioButton from "./AudioButton.tsx"
 import { useState } from "react";
 import DeleteButton from "./DeleteButton.tsx";

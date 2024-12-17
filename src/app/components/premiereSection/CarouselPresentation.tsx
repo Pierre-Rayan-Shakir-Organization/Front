@@ -1,6 +1,6 @@
 'use client';
 import { useState, useEffect } from 'react';
-import Image from 'next/image.tsx';
+import Image from 'next/image';
 
 export default function CarouselPresentation() {
   const [currentImage, setCurrentImage] = useState(0);

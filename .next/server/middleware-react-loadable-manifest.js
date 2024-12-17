@@ -1,1 +1,1 @@
-self.__REACT_LOADABLE_MANIFEST="{\"app\\\\profile\\\\components\\\\ProfilePage.tsx -> mdb-react-ui-kit\":{\"id\":\"app\\\\profile\\\\components\\\\ProfilePage.tsx -> mdb-react-ui-kit\",\"files\":[\"static/chunks/_app-pages-browser_node_modules_mdb-react-ui-kit_dist_mdb-react-ui-kit_esm_js.js\"]}}"
+self.__REACT_LOADABLE_MANIFEST="{}"
