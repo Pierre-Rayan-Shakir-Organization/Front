@@ -1,5 +1,5 @@
 'use client';
-import { useAuth } from "../contexts/AuthContext.context";
+import { useAuth } from "../contexts/AuthContext.context.tsx";
 
 export default function Deconnexion() {
 

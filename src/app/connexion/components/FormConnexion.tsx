@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import axios from 'axios';
-import { useAuth } from "@/app/contexts/AuthContext.context";
+import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 
 export default function FormConnexion() {
     const inputEmail = useRef<HTMLInputElement>(null);
