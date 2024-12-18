@@ -18,7 +18,7 @@ export default function NavbarWithToken() {
 
     // Liens de navigation centralisés
     const navLinks = [
-        { name: "Test", href: "/test" },
+        { name: "Discover", href: "/shuffle" },
         { name: "Mes musiques", href: "/mesmusiques" },
         { name: "Rechercher des musiques", href: "/recherche" },
         { name: "Profil", href: "/profile" }, 
