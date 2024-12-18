@@ -1,11 +1,11 @@
 'use client';
 
 import Image from "next/image"
-import AudioButton from "./AudioButton"
+import AudioButton from "./AudioButton.tsx"
 import { useState } from "react";
-import DeleteButton from "./DeleteButton";
-import CardButtons from "./CardButtons";
-import AddButton from "./AddButton";
+import DeleteButton from "./DeleteButton.tsx";
+import CardButtons from "./CardButtons.tsx";
+import AddButton from "./AddButton.tsx";
 
 export interface InfosCard {
     cardId : any,

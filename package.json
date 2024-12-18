@@ -2,6 +2,7 @@
   "name": "fivemusics-frontend",
   "version": "0.1.0",
   "private": true,
+  "type": "module",
   "scripts": {
     "dev": "next dev -p 4000",
     "build": "next build",
@@ -11,10 +12,12 @@
   "dependencies": {
     "@next/swc-win32-x64-msvc": "^15.0.4",
     "axios": "^1.7.3",
+    "framer-motion": "^10.18.0",
     "lucide-react": "^0.426.0",
-    "next": "^14.2.16",
-    "react": "^18",
-    "react-dom": "^18"
+    "mdb-react-ui-kit": "^9.0.0",
+    "next": "^14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "devDependencies": {
     "@types/node": "^20",

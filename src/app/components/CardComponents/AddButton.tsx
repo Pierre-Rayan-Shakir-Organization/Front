@@ -1,6 +1,6 @@
 'use client';
 
-import { useAuth } from "@/app/contexts/AuthContext.context";
+import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 import axios from 'axios';
 import { CirclePlus } from 'lucide-react';
 

@@ -1,11 +1,11 @@
 "use client";
 
-import Cards from "@/app/components/CardComponents/Cards";
-import { useAuth } from "@/app/contexts/AuthContext.context";
+import Cards from "@/app/components/CardComponents/Cards.tsx";
+import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 import { useEffect, useState } from "react";
 import axios from 'axios';
-import { InfosCard } from "@/app/components/CardComponents/Cards";
-import { fetchDataDeezer } from "@/app/components/deuxiemeSection/TextePresentation";
+import { InfosCard } from "@/app/components/CardComponents/Cards.tsx";
+import { fetchDataDeezer } from "@/app/components/deuxiemeSection/TextePresentation.tsx";
 
 export default function TableauAffichage() {
     const { token } = useAuth();

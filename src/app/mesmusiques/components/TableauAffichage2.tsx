@@ -1,7 +1,7 @@
 "use client";
 
-import Cards from "@/app/components/CardComponents/Cards";
-import { useAuth } from "@/app/contexts/AuthContext.context";
+import Cards from "@/app/components/CardComponents/Cards.tsx";
+import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
