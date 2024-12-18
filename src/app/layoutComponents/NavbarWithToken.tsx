@@ -47,7 +47,7 @@ export default function NavbarWithToken() {
             {/* Centre Navbar */}
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
-                    <li><a href="/test">Test</a></li>
+                    <li><a href="/shuffle">Discover</a></li>
                     <li><a href="/mesmusiques">Mes musiques</a></li>
                     <li><a href="/recherche">Rechercher des musiques</a></li>
                     <Deconnexion />
