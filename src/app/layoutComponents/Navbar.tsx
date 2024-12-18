@@ -1,4 +1,4 @@
-import Deconnexion from "./Deconnexion";
+import Deconnexion from "./Deconnexion.tsx";
 
 export default function Navbar() {
     return (

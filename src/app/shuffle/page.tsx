@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import Cards from "../components/CardComponents/Cards";
+import Cards from "../components/CardComponents/Cards.tsx";
 import axios from "axios";
-import NavbarWithToken from "../layoutComponents/NavbarWithToken";
+import NavbarWithToken from "../layoutComponents/NavbarWithToken.tsx";
 
 
 export const fetchDataDeezer = async (artist: string, track: string) => {

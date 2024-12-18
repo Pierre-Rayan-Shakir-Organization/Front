@@ -1,4 +1,4 @@
-import Cards from "../CardComponents/Cards";
+import Cards from "../CardComponents/Cards.tsx";
 import axios from 'axios';
 
 export const fetchDataDeezer = async (artist: string, track: string) => {

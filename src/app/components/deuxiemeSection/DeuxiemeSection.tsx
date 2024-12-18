@@ -1,4 +1,4 @@
-import TextePresentation from './TextePresentation'
+import TextePresentation from './TextePresentation.tsx'
 
 export default function DeuxiemeSection() {
     return (

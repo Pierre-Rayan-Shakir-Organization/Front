@@ -1,5 +1,5 @@
-import FormulaireInscription from "./FormulaireInscription";
-import CarouselPresentation from "./CarouselPresentation";
+import FormulaireInscription from "./FormulaireInscription.tsx";
+import CarouselPresentation from "./CarouselPresentation.tsx";
 
 export default function PremiereSection() {
     return (
