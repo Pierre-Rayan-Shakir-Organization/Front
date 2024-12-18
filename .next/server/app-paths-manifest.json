@@ -1,4 +1,6 @@
 {
+  "/page": "app/page.js",
+  "/connexion/page": "app/connexion/page.js",
   "/mesmusiques/page": "app/mesmusiques/page.js",
-  "/recherche/page": "app/recherche/page.js"
+  "/shuffle/page": "app/shuffle/page.js"
 }

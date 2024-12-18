@@ -43,7 +43,7 @@ export default function FormConnexion() {
             }
 
         } catch (error) {
-            setError("Erreur connexion");
+            setError("Erreur de connexion");
             console.log("Erreur lors de la connexion :", error);
         }
     }

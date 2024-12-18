@@ -1,9 +1,9 @@
 {
   "pages": {
-    "/mesmusiques/page": [
+    "/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/mesmusiques/page.js"
+      "static/chunks/app/page.js"
     ],
     "/layout": [
       "static/chunks/webpack.js",
@@ -11,10 +11,20 @@
       "static/css/app/layout.css",
       "static/chunks/app/layout.js"
     ],
-    "/recherche/page": [
+    "/connexion/page": [
       "static/chunks/webpack.js",
       "static/chunks/main-app.js",
-      "static/chunks/app/recherche/page.js"
+      "static/chunks/app/connexion/page.js"
+    ],
+    "/mesmusiques/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/mesmusiques/page.js"
+    ],
+    "/shuffle/page": [
+      "static/chunks/webpack.js",
+      "static/chunks/main-app.js",
+      "static/chunks/app/shuffle/page.js"
     ]
   }
 }

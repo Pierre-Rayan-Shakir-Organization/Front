@@ -3,6 +3,8 @@
 import { useState, useEffect } from "react";
 import Cards from "../components/CardComponents/Cards";
 import axios from "axios";
+import NavbarWithToken from "../layoutComponents/NavbarWithToken";
+
 
 export const fetchDataDeezer = async (artist: string, track: string) => {
   const query = `artist:"${artist}" track:"${track}"`;
@@ -63,6 +65,8 @@ export default function RandomCardPage() {
   }
 
   return (
+    <>
+    <NavbarWithToken />
     <div className="p-10 flex flex-col gap-10">
       <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-pink-500 bg-clip-text text-transparent">
         Découverte musicale
@@ -88,5 +92,6 @@ export default function RandomCardPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }
