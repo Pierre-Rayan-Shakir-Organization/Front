@@ -2,7 +2,7 @@
 
 import axios from 'axios';
 import { useState } from 'react';
-import { useAuth } from '@/app/contexts/AuthContext.context';
+import { useAuth } from '@/app/contexts/AuthContext.context.tsx';
 import { X } from 'lucide-react';
 
 interface DeleteButtonProps {

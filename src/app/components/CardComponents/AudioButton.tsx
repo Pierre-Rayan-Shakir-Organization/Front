@@ -2,7 +2,7 @@
 
 import { AudioLines, Play } from "lucide-react";
 import { useRef, useEffect } from "react";
-import { useAudio } from "@/app/contexts/AudioContext.context";
+import { useAudio } from "@/app/contexts/AudioContext.context.tsx";
 
 // 1. Ce composant représente un bouton qui contrôle la lecture audio d'une carte.
 //    `url_preview` est le lien du fichier audio, et `cardId` est un identifiant unique pour chaque carte.

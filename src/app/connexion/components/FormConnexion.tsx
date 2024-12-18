@@ -2,7 +2,7 @@
 
 import { useState, useRef } from "react";
 import axios from 'axios';
-import { useAuth } from "@/app/contexts/AuthContext.context";
+import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 
 export default function FormConnexion() {
     const inputEmail = useRef<HTMLInputElement>(null);
@@ -43,7 +43,7 @@ export default function FormConnexion() {
             }
 
         } catch (error) {
-            setError("Erreur connexion");
+            setError("Erreur de connexion");
             console.log("Erreur lors de la connexion :", error);
         }
     }

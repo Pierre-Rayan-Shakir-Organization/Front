@@ -10,30 +10,32 @@ export default function TableauAffichage() {
     const [cardsData, setCardsData] = useState<any[]>([]);
 
     const fetchDeezerData = async (query: string = '') => {
-        let url: string;
-
-        // Si searchTerm est vide, afficher les 20 musiques les plus populaires
-        if (query === '') {
-            url = `https://api.deezer.com/chart`;
-        } else {
-            url = `https://api.deezer.com/search?q=${encodeURIComponent(query)}`;
-        }
-
+        const backendProxy = 'http://localhost:3000/api/deezer'; // URL du backend proxy
+        const endpoint = query === '' ? '/chart' : `/search?q=${encodeURIComponent(query)}`;
+        const url = `${backendProxy}?endpoint=${encodeURIComponent(endpoint)}`; // Construire l'URL complète pour le backend proxy
+    
         try {
-            const response = await axios.get(url);
-            const musicData = query === '' ? response.data.tracks.data.slice(0, 20) : response.data.data.slice(0, 20);
-
+            console.log("URL envoyée au backend :", url); // Vérifiez l'URL dans la console
+            const response = await axios.get(url); // Requête au backend proxy
+            console.log("Données reçues du backend :", response.data);
+    
+            const musicData = query === ''
+                ? response.data.tracks?.data?.slice(0, 20) || []
+                : response.data.data?.slice(0, 20) || [];
+    
             if (musicData.length === 0) {
                 setError('Aucune donnée trouvée');
             } else {
                 setCardsData(musicData);
-                setError(''); // Réinitialiser l'erreur si des données sont trouvées
+                setError('');
             }
         } catch (error) {
+            console.error("Erreur lors de la requête :", error);
             setError('Erreur au moment de la requête');
-            console.log(error);
         }
     };
+    
+    
 
     const handleSearchChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         setSearchTerm(e.target.value);
