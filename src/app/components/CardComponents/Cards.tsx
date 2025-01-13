@@ -60,7 +60,7 @@ export default function Cards(
         <>
             {
                 withBlock ?
-                <div className="w-[220px] h-[360px] bg-sky-950 rounded-2xl">
+                <div className={`bg-blue-900 rounded-2xl p-2 inline-block`}>
                 <div className={`card glass ${size}`}>
 
                 <figure className="h-50">

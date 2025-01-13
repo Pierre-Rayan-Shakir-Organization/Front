@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState } from "react";
 import "./profilePage.css";
-import { useAuth } from "@/app/contexts/AuthContext.context";
+import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 import Cards from "@/app/components/CardComponents/Cards.tsx";
 import axios from "axios"
 
@@ -76,7 +76,7 @@ export default function ProfilePage() {
               <div className="rounded-top text-white d-flex flex-row header-bg grid-border">
                 <div className="ms-4 mt-5 d-flex flex-column profile-img-wrapper">
                   <MDBBtn outline color="dark" className="mb-3 align-self-center">
-                    Edit profile
+                    Edit profile 
                   </MDBBtn>
                   <MDBCardImage
                     src={user.photoUrl}
@@ -130,22 +130,45 @@ export default function ProfilePage() {
         </MDBRow>
       </MDBContainer>
 
+      
       {/* Section Playlist */}
-      {/* Section Playlist */}
-    <div className="full-page-section grid-border">
-    <h4 className="playlist-title">Mes Musiques</h4>
-    <div className="playlist-container">
-        {playlist.length > 0 ? (
+<div className="full-page-section grid-border bg-gray-800 flex items-start p-4">
+  {/* Conteneur principal de la section Playlist */}
+  <div className="playlist-content flex w-full">
+    {/* Section pour le titre */}
+    <div className="playlist-title-section w-1/4">
+      <h4 className="playlist-title text-white text-lg">Ma Playlist</h4>
+    </div>
+
+    {/* Section pour les musiques */}
+    <div className="playlist-music-section w-3/4 flex flex-wrap gap-4">
+      {playlist.length > 0 ? (
         playlist.map((music, index) => (
-            <span key={index} className="playlist-item">
-            {music.titre}
-            </span>
+          <Cards
+            key={index}
+            cardId={music.id}
+            name_artist={music.artiste}
+            name_song={music.titre}
+            url_preview={""} // Pas nécessaire ici
+            url_cover_album_big={music.url_cover_album_big || ""}
+            withBlock={true} // Affichage simple en mode "block"
+            audioButton={false} // Pas de bouton d'écoute
+            deleteButton={false} // Pas de bouton de suppression
+            addButton={false} // Pas de bouton d'ajout
+            size="w-[150px] h-[200px]" // Taille réduite des cartes
+          />
         ))
-        ) : (
-        <span className="playlist-item">Aucune musique dans votre playlist</span>
-        )}
+      ) : (
+        <span className="playlist-item text-white">Aucune musique dans votre playlist</span>
+      )}
     </div>
-    </div>
+  </div>
+</div>
+
+
+
+
+
     </div>
   );
 }
