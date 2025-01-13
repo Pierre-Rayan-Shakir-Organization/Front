@@ -1,10 +1,14 @@
 .gradient-custom-2 {
   background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+  /*min-height: 100vh; /* Assure que la section couvre tout l'écran */
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;  Écarte les sections pour remplir */
 }
 
 .header-bg {
   background-color: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
-  height: 180px;
+  height: 150px;
 }
 
 .profile-img-wrapper {
@@ -30,12 +34,6 @@
   z-index: 2; /* S'assure qu'elle passe au-dessus */
   position: relative;
 }
-.music-cover {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
 
 .d-flex.justify-content-center.flex-wrap {
   display: flex !important;
@@ -52,4 +50,70 @@
 
 .profile-img-wrapper .MDBBtn {
   margin-bottom: 10px; /* Ajoute un petit espacement sous le bouton */
+}
+
+.empty-card {
+  width: 150px; /* Largeur réduite */
+  height: 200px; /* Hauteur réduite */
+  border: 2px dashed #888; /* Garde la bordure */
+  border-radius: 10px; /* Coins arrondis */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: -20px; /* Remonte les cartes */
+}
+
+.top-five-music {
+  margin-bottom: 10px; /* Réduit l'espace sous les cartes */
+}
+
+
+.empty-text {
+  font-size: 1.2rem;
+  color: #aaa; /* Couleur grise */
+  font-style: italic;
+  text-align: center; /* Centre le texte s'il y a plusieurs lignes */
+}
+
+/* Bloque le défilement vertical */
+body {
+  margin: 0;
+  overflow: hidden; /* Empêche le défilement */
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+}
+
+/* Section contenant la playlist */
+.playlist-container {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacement entre les cartes */
+  justify-content: center;
+  align-items: center;
+  background-color: #2c2c2c;
+  padding: 20px;
+  border-radius: 10px;
+  margin: 10px 20px;
+  overflow: auto; /* Défilement si besoin */
+}
+
+.playlist-title {
+  font-size: 1.5rem;
+  color: #fff;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Chaque musique */
+.playlist-item {
+  font-size: 1.2rem; /* Taille de texte plus grande */
+  color: #fff; /* Texte en blanc */
+  background-color: #333; /* Fond gris foncé */
+  padding: 8px 15px;
+  border-radius: 10px;
+  border: 2px solid #555; /* Bordure plus épaisse */
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  white-space: nowrap;
+  text-align: center;
 }
