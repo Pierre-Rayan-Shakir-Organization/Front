@@ -4,13 +4,13 @@ import React, { useEffect, useState } from "react";
 import "./profilePage.css";
 import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 import Cards from "@/app/components/CardComponents/Cards.tsx";
-import axios from "axios"
 
 export default function ProfilePage() {
   const [mdb, setMdb] = useState<any>(null);
   const [playlist, setPlaylist] = useState<any[]>([]); // State pour stocker la playlist
   const { token } = useAuth(); // Récupère le token via le AuthContext
   const [isClient, setIsClient] = useState(false);
+  const [searchTerm, setSearchTerm] = useState(""); // Stocke le terme de recherche
 
   useEffect(() => {
     import("mdb-react-ui-kit").then((module) => setMdb(module));
@@ -37,7 +37,7 @@ export default function ProfilePage() {
   useEffect(() => {
     setIsClient(true); // On indique que le client est prêt
   }, []);
-  
+
   useEffect(() => {
     if (isClient && token) {
       fetchPlaylist();
@@ -76,7 +76,7 @@ export default function ProfilePage() {
               <div className="rounded-top text-white d-flex flex-row header-bg grid-border">
                 <div className="ms-4 mt-5 d-flex flex-column profile-img-wrapper">
                   <MDBBtn outline color="dark" className="mb-3 align-self-center">
-                    Edit profile 
+                    Edit profile
                   </MDBBtn>
                   <MDBCardImage
                     src={user.photoUrl}
@@ -130,45 +130,55 @@ export default function ProfilePage() {
         </MDBRow>
       </MDBContainer>
 
-      
       {/* Section Playlist */}
-<div className="full-page-section grid-border bg-gray-800 flex items-start p-4">
-  {/* Conteneur principal de la section Playlist */}
-  <div className="playlist-content flex w-full">
-    {/* Section pour le titre */}
-    <div className="playlist-title-section w-1/4">
-      <h4 className="playlist-title text-white text-lg">Ma Playlist</h4>
-    </div>
+      <div className="full-page-section grid-border bg-gray-800 flex items-start p-4">
+        {/* Conteneur principal de la section Playlist */}
+        <div className="playlist-content flex w-full">
+          {/* Section pour le titre */}
+          <div className="playlist-title-section w-1/4 flex flex-col gap-4">
+            <h4 className="playlist-title text-white text-lg">Ma Playlist</h4>
 
-    {/* Section pour les musiques */}
-    <div className="playlist-music-section w-3/4 flex flex-wrap gap-4">
-      {playlist.length > 0 ? (
-        playlist.map((music, index) => (
-          <Cards
-            key={index}
-            cardId={music.id}
-            name_artist={music.artiste}
-            name_song={music.titre}
-            url_preview={""} // Pas nécessaire ici
-            url_cover_album_big={music.url_cover_album_big || ""}
-            withBlock={true} // Affichage simple en mode "block"
-            audioButton={false} // Pas de bouton d'écoute
-            deleteButton={false} // Pas de bouton de suppression
-            addButton={false} // Pas de bouton d'ajout
-            size="w-[150px] h-[200px]" // Taille réduite des cartes
-          />
-        ))
-      ) : (
-        <span className="playlist-item text-white">Aucune musique dans votre playlist</span>
-      )}
-    </div>
-  </div>
-</div>
+            {/* Barre de recherche */}
+            <input
+              type="text"
+              placeholder="Rechercher une musique..."
+              className="search-bar p-2 rounded-lg bg-gray-800 text-white"
+              onChange={(e) => setSearchTerm(e.target.value)} // Met à jour le terme de recherche
+              value={searchTerm} // Liaison de la valeur au state
+            />
+          </div>
 
-
-
-
-
+          {/* Section pour les musiques */}
+          <div className="playlist-music-section w-3/4 flex flex-wrap gap-4">
+            {playlist.length > 0 ? (
+              playlist
+                .filter((music) =>
+                  music.titre.toLowerCase().includes(searchTerm.toLowerCase()) // Filtrage dynamique
+                )
+                .map((music, index) => (
+                  <Cards
+                    key={index}
+                    cardId={music.id}
+                    name_artist={music.artiste}
+                    name_song={music.titre}
+                    url_preview={""} // Pas nécessaire ici
+                    url_cover_album_big={music.url_cover_album_big || ""}
+                    withBlock={true} // Affichage simple en mode "block"
+                    audioButton={false} // Pas de bouton d'écoute
+                    deleteButton={false} // Pas de bouton de suppression
+                    addButton={false} // Pas de bouton d'ajout
+                    size="w-[150px] h-[200px]" // Taille réduite des cartes
+                    containerStyle="bg-blue-900 rounded-2xl p-2 inline-block" // Style personnalisé
+                  />
+                ))
+            ) : (
+              <span className="playlist-item text-white">
+                Aucune musique dans votre playlist
+              </span>
+            )}
+          </div>
+        </div>
+      </div>
     </div>
   );
 }

@@ -93,10 +93,13 @@ body {
   border-radius: 10px;
 }
 
-/* Conteneur pour le titre */
 .playlist-title-section {
-  text-align: left; /* Titre aligné à gauche */
-  padding-right: 20px; /* Espacement entre le titre et les musiques */
+  text-align: center; /* Centre horizontalement le texte */
+  display: flex; /* Active Flexbox */
+  flex-direction: column; /* Empile le titre et la barre verticalement */
+  align-items: center; /* Centre horizontalement le contenu */
+  gap: 5px; /* Espacement modéré entre le titre et la barre */
+  
 }
 
 /* Style pour le titre */
@@ -104,7 +107,7 @@ body {
   font-size: 1.5rem;
   color: #fff;
   margin: 0;
-  padding : 80px;
+  padding : 50px;
 }
 
 /* Conteneur des musiques */
@@ -114,4 +117,38 @@ body {
   gap: 20px; /* Espacement entre les cartes */
   justify-content: flex-start; /* Aligne les cartes à gauche */
   align-items: flex-start; /* Aligne les cartes en haut */
+}
+
+
+.card-container {
+  position: relative;
+  cursor: grab; /* Change le curseur au survol */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+
+.card-container:active {
+  cursor: grabbing; /* Change le curseur pendant le drag */
+}
+
+.card-container.opacity-50 {
+  opacity: 0.5; /* Rend la carte semi-transparente pendant le drag */
+  transform: scale(1.1); /* Agrandit légèrement la carte pendant le drag */
+}
+
+.search-bar {
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #fff; /* Texte blanc */
+  background-color: #1e293b; /* Fond sombre */
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
