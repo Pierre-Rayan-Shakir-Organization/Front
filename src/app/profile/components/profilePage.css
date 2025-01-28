@@ -63,10 +63,14 @@
   background-color: transparent;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-top: -20px; /* Remonte les cartes */
+  position: relative; /* Permet de positionner la croix en absolu */
 }
+
 
 .top-five-music {
   margin-bottom: 10px; /* Réduit l'espace sous les cartes */
+  border: 2px solid red; /* Vérifie les limites */
+
 }
 
 
@@ -82,6 +86,7 @@ body {
   margin: 0;
   overflow: hidden; /* Empêche le défilement */
   height: 100vh; /* Prend toute la hauteur de l'écran */
+  
 }
 
 /* Conteneur principal de la section Playlist */
@@ -91,6 +96,7 @@ body {
   padding: 20px;
   background-color: #2c2c2c;
   border-radius: 10px;
+  
 }
 
 .playlist-title-section {
@@ -99,6 +105,7 @@ body {
   flex-direction: column; /* Empile le titre et la barre verticalement */
   align-items: center; /* Centre horizontalement le contenu */
   gap: 5px; /* Espacement modéré entre le titre et la barre */
+  
   
 }
 
@@ -117,6 +124,7 @@ body {
   gap: 20px; /* Espacement entre les cartes */
   justify-content: flex-start; /* Aligne les cartes à gauche */
   align-items: flex-start; /* Aligne les cartes en haut */
+  
 }
 
 
@@ -124,7 +132,9 @@ body {
   position: relative;
   cursor: grab; /* Change le curseur au survol */
   transition: transform 0.3s ease, opacity 0.3s ease;
+  
 }
+
 
 .card-container:active {
   cursor: grabbing; /* Change le curseur pendant le drag */
@@ -152,3 +162,110 @@ body {
   border-color: #007bff;
   box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
 }
+
+.top-card {
+  width: 100px; /* Largeur des cartes dans le Top Five */
+  height: 150px; /* Hauteur des cartes */
+  transition: all 0.3s ease; /* Animation de redimensionnement */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Centre l'image horizontalement */
+  align-items: center; /* Centre verticalement (si nécessaire) */
+  margin-top: 10px; /* Espacement au-dessus de l'image */
+  margin-left: 50px;
+
+}
+
+.image-style {
+  width: 100px; /* Largeur de l'image */
+  height: 100px; /* Hauteur de l'image */
+  object-fit: contain; /* Garde les proportions */
+  cursor: pointer; /* Curseur de la main pour indiquer l'interactivité (optionnel) */
+}
+
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Message d'erreur */
+.error-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Bouton pour vider le Top 5 */
+.clear-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.clear-button:hover {
+  background-color: #0056b3;
+}
+
+.empty-card .remove-button {
+  position: absolute;
+  top: 5px; /* Position en haut à droite */
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.empty-card .remove-button:hover {
+  transform: scale(1.2); /* Zoom au survol */
+  background-color: darkred; /* Couleur plus sombre */
+}
+
+.send-button {
+  background-color: #28a745; /* Vert pour indiquer succès */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #218838; /* Couleur plus sombre au survol */
+}
+
