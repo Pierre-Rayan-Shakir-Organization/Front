@@ -28,22 +28,27 @@ export default function ProfilePage() {
   const fetchUserInfo = async () => {
     try {
       if (!token) {
-        throw new Error("Token manquant. Impossible de récupérer l'utilisateur.");
+        throw new Error("Token manquant.");
       }
   
-      const userId = getUserIdFromToken(token); // Utiliser le token en toute sécurité après la vérification
-  
+      const userId = getUserIdFromToken(token);
       if (!userId) {
         throw new Error("Impossible de récupérer l'ID utilisateur.");
       }
   
-      // Logique pour récupérer les informations utilisateur
-    } catch (error) {
-      if (error instanceof Error) {
-        console.error(error.message);
-      } else {
-        console.error("Une erreur inconnue est survenue :", error);
+      const response = await fetch(`http://localhost:3000/profile/${userId}`, {
+        headers: { Authorization: `Bearer ${token}` },
+      });
+  
+      if (!response.ok) {
+        throw new Error("Erreur lors de la récupération des infos utilisateur.");
       }
+  
+      const data = await response.json();
+      setUser(data.profil); // Vérifiez que 'data.profil' contient les bonnes infos
+      console.log("Utilisateur récupéré :", data.profil);
+    } catch (error) {
+      console.error(error);
     }
   };
   
@@ -133,7 +138,7 @@ export default function ProfilePage() {
   useEffect(() => {
     if (isClient && token) {
       fetchPlaylist();
-       fetchUserInfo();
+      fetchUserInfo();
     }
   }, [isClient, token]);
 
@@ -223,15 +228,15 @@ export default function ProfilePage() {
                 <div className="mb-5 about-section grid-border">
                   <p className="lead fw-normal mb-1">À propos</p>
                   <div className="p-4 about-bg d-flex flex-wrap">
-                    {isEditing ? (
-                      <textarea
-                        className="edit-description"
-                        value={updatedDescription}
-                        onChange={(e) => setUpdatedDescription(e.target.value)}
-                      />
-                    ) : (
-                      <span>{user.description || "Aucune description disponible"}</span>
-                    )}
+                  {isEditing ? (
+                    <textarea
+                    className="edit-description"
+                    value={updatedDescription}
+                    onChange={(e) => setUpdatedDescription(e.target.value)}
+                  />
+                  ) : (
+                    <span>{user?.description || "Aucune description disponible"}</span>
+                  )}
                   </div>
                   {isEditing && (
                     <div className="text-center mt-3">

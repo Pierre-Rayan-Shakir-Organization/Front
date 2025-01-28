@@ -269,3 +269,17 @@ body {
   background-color: #218838; /* Couleur plus sombre au survol */
 }
 
+.edit-description {
+  width: 100%; /* Prend toute la largeur du conteneur */
+  height: 100%; /* Prend toute la hauteur */
+  border: none; /* Supprime les bordures */
+  background-color: rgba(255, 255, 255, 0.8); /* Couleur blanche avec transparence */
+  padding: 10px; /* Ajoute un espace intérieur */
+  font-size: 1rem; /* Taille du texte */
+  font-family: inherit; /* Police identique au reste */
+  color: #333; /* Couleur du texte */
+  outline: none; /* Supprime le contour par défaut lors du focus */
+  border-radius: 5px; /* Ajoute des coins arrondis */
+  box-sizing: border-box; /* Inclut les paddings dans les dimensions */
+  resize: none; /* Empêche le redimensionnement */
+}
