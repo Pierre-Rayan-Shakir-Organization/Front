@@ -1,10 +1,14 @@
 .gradient-custom-2 {
   background: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
+  /*min-height: 100vh; /* Assure que la section couvre tout l'écran */
+  /*display: flex;*/
+  /*flex-direction: column;*/
+  /*justify-content: space-between;  Écarte les sections pour remplir */
 }
 
 .header-bg {
   background-color: linear-gradient(to right, rgba(251, 194, 235, 1), rgba(166, 193, 238, 1));
-  height: 180px;
+  height: 150px;
 }
 
 .profile-img-wrapper {
@@ -30,12 +34,6 @@
   z-index: 2; /* S'assure qu'elle passe au-dessus */
   position: relative;
 }
-.music-cover {
-  width: 100px;
-  height: 100px;
-  object-fit: cover;
-}
-
 
 .d-flex.justify-content-center.flex-wrap {
   display: flex !important;
@@ -52,4 +50,267 @@
 
 .profile-img-wrapper .MDBBtn {
   margin-bottom: 10px; /* Ajoute un petit espacement sous le bouton */
+}
+
+.empty-card {
+  width: 150px; /* Largeur réduite */
+  height: 200px; /* Hauteur réduite */
+  border: 2px dashed #888; /* Garde la bordure */
+  border-radius: 10px; /* Coins arrondis */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: transparent;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  margin-top: -20px; /* Remonte les cartes */
+  position: relative; /* Permet de positionner la croix en absolu */
+}
+
+
+.top-five-music {
+  margin-bottom: 10px; /* Réduit l'espace sous les cartes */
+  border: 2px solid red; /* Vérifie les limites */
+
+}
+
+
+.empty-text {
+  font-size: 1.2rem;
+  color: #aaa; /* Couleur grise */
+  font-style: italic;
+  text-align: center; /* Centre le texte s'il y a plusieurs lignes */
+}
+
+/* Bloque le défilement vertical */
+body {
+  margin: 0;
+  overflow: hidden; /* Empêche le défilement */
+  height: 100vh; /* Prend toute la hauteur de l'écran */
+  
+}
+
+/* Conteneur principal de la section Playlist */
+.full-page-section {
+  display: flex;
+  align-items: flex-start; /* Aligne tout en haut */
+  padding: 20px;
+  background-color: #2c2c2c;
+  border-radius: 10px;
+  
+}
+
+.playlist-title-section {
+  text-align: center; /* Centre horizontalement le texte */
+  display: flex; /* Active Flexbox */
+  flex-direction: column; /* Empile le titre et la barre verticalement */
+  align-items: center; /* Centre horizontalement le contenu */
+  gap: 5px; /* Espacement modéré entre le titre et la barre */
+  
+  
+}
+
+/* Style pour le titre */
+.playlist-title {
+  font-size: 1.5rem;
+  color: #fff;
+  margin: 0;
+  padding : 50px;
+}
+
+/* Conteneur des musiques */
+.playlist-music-section {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px; /* Espacement entre les cartes */
+  justify-content: flex-start; /* Aligne les cartes à gauche */
+  align-items: flex-start; /* Aligne les cartes en haut */
+  
+}
+
+
+.card-container {
+  position: relative;
+  cursor: grab; /* Change le curseur au survol */
+  transition: transform 0.3s ease, opacity 0.3s ease;
+  
+}
+
+
+.card-container:active {
+  cursor: grabbing; /* Change le curseur pendant le drag */
+}
+
+.card-container.opacity-50 {
+  opacity: 0.5; /* Rend la carte semi-transparente pendant le drag */
+  transform: scale(1.1); /* Agrandit légèrement la carte pendant le drag */
+}
+
+.search-bar {
+  width: 80%;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  color: #fff; /* Texte blanc */
+  background-color: #1e293b; /* Fond sombre */
+  padding: 0.5rem 1rem;
+  box-sizing: border-box;
+
+}
+
+.search-bar:focus {
+  outline: none;
+  border-color: #007bff;
+  box-shadow: 0 0 5px rgba(0, 123, 255, 0.5);
+}
+
+.top-card {
+  width: 100px; /* Largeur des cartes dans le Top Five */
+  height: 150px; /* Hauteur des cartes */
+  transition: all 0.3s ease; /* Animation de redimensionnement */
+}
+
+.image-container {
+  display: flex;
+  justify-content: center; /* Centre l'image horizontalement */
+  align-items: center; /* Centre verticalement (si nécessaire) */
+  margin-top: 10px; /* Espacement au-dessus de l'image */
+  margin-left: 50px;
+
+}
+
+.image-style {
+  width: 100px; /* Largeur de l'image */
+  height: 100px; /* Hauteur de l'image */
+  object-fit: contain; /* Garde les proportions */
+  cursor: pointer; /* Curseur de la main pour indiquer l'interactivité (optionnel) */
+}
+
+.remove-button {
+  position: absolute;
+  top: 5px;
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  z-index: 10;
+}
+
+/* Message d'erreur */
+.error-message {
+  position: fixed;
+  top: 20px;
+  right: 20px;
+  background-color: #f44336;
+  color: white;
+  padding: 10px 20px;
+  border-radius: 5px;
+  font-size: 14px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 1000;
+}
+
+/* Bouton pour vider le Top 5 */
+.clear-button {
+  background-color: #007bff;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.clear-button:hover {
+  background-color: #0056b3;
+}
+
+.empty-card .remove-button {
+  position: absolute;
+  top: 5px; /* Position en haut à droite */
+  right: 5px;
+  background: red;
+  color: white;
+  border: none;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  font-size: 12px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10;
+  transition: transform 0.2s ease, background-color 0.2s ease;
+}
+
+.empty-card .remove-button:hover {
+  transform: scale(1.2); /* Zoom au survol */
+  background-color: darkred; /* Couleur plus sombre */
+}
+
+.send-button {
+  background-color: #28a745; /* Vert pour indiquer succès */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s ease;
+}
+
+.send-button:hover {
+  background-color: #218838; /* Couleur plus sombre au survol */
+}
+
+.edit-description {
+  width: 100%; /* Prend toute la largeur du conteneur */
+  height: 100%; /* Prend toute la hauteur */
+  border: none; /* Supprime les bordures */
+  background-color: rgba(255, 255, 255, 0.8); /* Couleur blanche avec transparence */
+  padding: 10px; /* Ajoute un espace intérieur */
+  font-size: 1rem; /* Taille du texte */
+  font-family: inherit; /* Police identique au reste */
+  color: #333; /* Couleur du texte */
+  outline: none; /* Supprime le contour par défaut lors du focus */
+  border-radius: 5px; /* Ajoute des coins arrondis */
+  box-sizing: border-box; /* Inclut les paddings dans les dimensions */
+  resize: none; /* Empêche le redimensionnement */
+}
+/* ✅ Conteneur centré */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;  /* ✅ Assure que l'image ne déborde pas */
+  position: relative;
+  margin: auto;
+  padding: 10px; /* ✅ Ajoute un peu d'espace autour */
+}
+
+/* ✅ Assure que toute l'image est cliquable */
+.full-clickable {
+  display: block;
+  width: fit-content; /* ✅ S'ajuste à l'image */
+  cursor: pointer;
+}
+
+/* ✅ Image centrée */
+.profile-img {
+  width: 150px;  /* ✅ Ajuste la taille selon besoin */
+  height: 150px; /* ✅ Garde un format carré */
+  object-fit: cover; /* ✅ Ajuste l'image sans déformation */
+  border-radius: 50%; /* ✅ Rend l'image ronde */
+  transition: opacity 0.3s ease-in-out; /* ✅ Effet fluide */
+}
+
+/* ✅ Effet au survol */
+.profile-img:hover {
+  opacity: 0.8;
 }
