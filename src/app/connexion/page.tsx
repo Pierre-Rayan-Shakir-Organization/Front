@@ -3,6 +3,7 @@
 import FormConnexion from "./components/FormConnexion";
 import FormulaireInscription from "../components/premiereSection/FormulaireInscription";
 import { useState } from "react";
+import Navbar from "../layoutComponents/Navbar.tsx";
 
 export default function ConnexionPage() {
     const [choix, setChoix] = useState<boolean>(true);
@@ -20,7 +21,10 @@ export default function ConnexionPage() {
     }
 
     return (
+        
         <>
+        <Navbar />
+        
         <div className="w-full min-h-[calc(100vh-4.5rem)] flex flex-row justify-center items-center gap-10 flex-wrap">
             <div className="w-2/5 h-auto text-center">
                 <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-pink-500 bg-clip-text text-transparent mb-4">

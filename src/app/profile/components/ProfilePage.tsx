@@ -6,6 +6,8 @@ import { useAuth } from "@/app/contexts/AuthContext.context.tsx";
 import Cards from "@/app/components/CardComponents/Cards.tsx";
 import {jwtDecode} from "jwt-decode";
 
+
+
 export default function ProfilePage() {
   const [mdb, setMdb] = useState<any>(null);
   const [playlist, setPlaylist] = useState<any[]>([]);
@@ -14,6 +16,7 @@ export default function ProfilePage() {
   const [searchTerm, setSearchTerm] = useState("");
   const [topFive, setTopFive] = useState<(any | null)[]>(Array(5).fill(null));
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
   useEffect(() => {
     import("mdb-react-ui-kit").then((module) => setMdb(module));
@@ -45,6 +48,8 @@ export default function ProfilePage() {
       }
   
       const data = await response.json();
+      console.log("Données utilisateur récupérées :", data); // 🔍 Affiche les données reçues
+
       setUser(data.profil); // Vérifiez que 'data.profil' contient les bonnes infos
       console.log("Utilisateur récupéré :", data.profil);
     } catch (error) {
@@ -77,6 +82,46 @@ export default function ProfilePage() {
       console.error("Erreur lors de la sauvegarde de la description :", error);
     }
   };
+
+  const handleUploadPhoto = async (file: File) => {
+    if (!file || !token) {
+        console.error("🔴 Erreur: Aucun fichier ou token trouvé !");
+        return;
+    }
+
+    console.log("🟢 Token envoyé :", token);
+
+    const formData = new FormData();
+    formData.append("photo_profil", file);
+
+    try {
+        const response = await fetch("http://localhost:3000/profile/photo", {
+            method: "POST",
+            headers: { Authorization: `Bearer ${token}` },
+            body: formData,
+        });
+
+        if (!response.ok) {
+            console.error("🔴 Erreur réponse serveur :", response.status, response.statusText);
+            throw new Error("Erreur lors de l'upload de la photo.");
+        }
+
+        const data = await response.json();
+        console.log("🟢 Réponse du serveur après upload :", data);
+
+        // ✅ Correction : Assurer un chemin absolu
+        const fullPhotoUrl = `http://localhost:3000${data.photoUrl}`;
+
+        setUser((prevUser: any) => ({
+            ...prevUser,
+            photo_profil: fullPhotoUrl, // ✅ Mettre l'URL absolue
+        }));
+    } catch (error) {
+        console.error("🔴 Erreur lors de l'upload :", error);
+    }
+};
+
+
 
 
   
@@ -142,6 +187,8 @@ export default function ProfilePage() {
     }
   }, [isClient, token]);
 
+  
+
   // Fonction pour récupérer la playlist depuis l'API
   const fetchPlaylist = async () => {
     try {
@@ -205,15 +252,54 @@ export default function ProfilePage() {
                   >
                     {isEditing ? "Annuler" : "Modifier"}
                   </MDBBtn>
-                  <MDBCardImage
-                    src={user?.photo_profil || "/DefautProfil.png"} // Image utilisateur ou défaut
-                    alt="Profile picture"
-                    className="profile-img"
-                    fluid
-                    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
-                      (e.target as HTMLImageElement).src = "/DefautProfil.png"; // Image par défaut si erreur
-                    }}
-                  />
+                  <div className="text-center mt-3" style={{ position: "relative" }}>
+
+    {/* ✅ Image cliquable pour modifier la photo de profil */}
+    <label htmlFor="fileInput" className="cursor-pointer" style={{
+            display: "block",  // ✅ Le label prend toute la place
+            width: "fit-content",  // ✅ Ajuste à la taille de l'image
+            margin: "0 auto",  // ✅ Centre l'élément
+            position: "relative",  // ✅ Pour éviter d'être caché
+            zIndex: 10  // ✅ S'assure que c'est au-dessus
+        }}>
+    <MDBCardImage
+    src={user?.photo_profil 
+        ? (user.photo_profil.startsWith("http") ? user.photo_profil : `http://localhost:3000${user.photo_profil}`)
+        : "/DefautProfil.png"} // ✅ Utilise une image par défaut si `photo_profil` est null
+    alt="Profile picture"
+    className="profile-img"
+    fluid
+    onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
+        (e.target as HTMLImageElement).src = "/DefautProfil.png"; // ✅ Fallback si l'image ne charge pas
+    }} style={{
+      width: "150px", // ✅ Taille ajustable
+      height: "150px",
+      borderRadius: "50%",  // ✅ Cercle pour un avatar
+      objectFit: "cover",  // ✅ S'assure que l'image garde une bonne forme
+      cursor: "pointer",  // ✅ Indique que c'est cliquable
+      position: "relative", // ✅ Évite d'être sous un autre élément
+      zIndex: 10 // ✅ Passe au-dessus des autres éléments
+  }}
+/>
+    </label>
+
+    {/* ✅ Input caché pour l'upload */}
+    <input
+        type="file"
+        id="fileInput"
+        accept="image/*"
+        onChange={(e) => {
+            const file = e.target.files?.[0] || null;
+            if (file) {
+                setSelectedFile(file); // ✅ Mettre à jour l'état
+                handleUploadPhoto(file); // ✅ Lancer l'upload après sélection
+            }
+        }}
+        style={{ display: "none" }}
+    />
+</div>
+
+                  
                   <div className="text-center mt-2">
                     <MDBTypography tag="h5" className="mb-0">
                       {user?.prenom} {user?.nom}

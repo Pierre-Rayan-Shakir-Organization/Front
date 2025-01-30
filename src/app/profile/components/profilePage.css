@@ -283,3 +283,34 @@ body {
   box-sizing: border-box; /* Inclut les paddings dans les dimensions */
   resize: none; /* Empêche le redimensionnement */
 }
+/* ✅ Conteneur centré */
+.profile-image-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;  /* ✅ Assure que l'image ne déborde pas */
+  position: relative;
+  margin: auto;
+  padding: 10px; /* ✅ Ajoute un peu d'espace autour */
+}
+
+/* ✅ Assure que toute l'image est cliquable */
+.full-clickable {
+  display: block;
+  width: fit-content; /* ✅ S'ajuste à l'image */
+  cursor: pointer;
+}
+
+/* ✅ Image centrée */
+.profile-img {
+  width: 150px;  /* ✅ Ajuste la taille selon besoin */
+  height: 150px; /* ✅ Garde un format carré */
+  object-fit: cover; /* ✅ Ajuste l'image sans déformation */
+  border-radius: 50%; /* ✅ Rend l'image ronde */
+  transition: opacity 0.3s ease-in-out; /* ✅ Effet fluide */
+}
+
+/* ✅ Effet au survol */
+.profile-img:hover {
+  opacity: 0.8;
+}
