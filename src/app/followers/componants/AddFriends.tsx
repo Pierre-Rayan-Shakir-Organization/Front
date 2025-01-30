@@ -99,7 +99,7 @@ const AddFriends = () => {
       </div>
       
       <div>
-        <h2 className="text-xl font-semibold mt-4">Résultats de la recherche</h2>
+        <h2 className="flex items-center justify-between p-4 border border-gray-200 rounded">Résultats de la recherche</h2>
         {searchResults.length === 0 && <p>Aucun utilisateur trouvé.</p>}
         {searchResults.map(user => (
           <div key={user.id} className="flex justify-between items-center p-2 border-b">

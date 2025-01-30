@@ -43,8 +43,9 @@ const RechercherAmis = ({ searchResults, setSearchResults, following, handleFoll
 
   return (
     <div>
-      <div className="flex gap-2 mb-4">
-        <input
+            <div className="p-10 flex flex-col gap-10">
+            <h1 className="text-4xl font-bold bg-gradient-to-r from-purple-500 via-pink-500 to-pink-500 bg-clip-text text-transparent">
+            </h1>        <input
           type="text"
           placeholder="Rechercher un utilisateur..."
           className="input input-bordered w-full"

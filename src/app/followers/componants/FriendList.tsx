@@ -20,9 +20,10 @@ const FriendsList: React.FC<FriendsListProps> = ({ title, friends, refreshFriend
   console.log(`✅ Affichage de la liste "${title}"`, friends); // Vérifier si des données arrivent
 
   return (
+    
     <div className="w-full md:w-1/2 p-4">
-      <h2 className="text-xl font-bold mb-4">{title}</h2>
-      <div className="space-y-4">
+      <h2 className="text-4xl font-bold bg-gradient-to-r from-purple-800 via-pink-500 to-pink-500 bg-clip-text text-transparent">{title}</h2>
+      <div className="space-y-4 mt-4">
         {friends.length > 0 ? (
           friends.map((friend) => (
             <FriendItem key={friend.id} friend={friend} refreshFriends={refreshFriends} />
