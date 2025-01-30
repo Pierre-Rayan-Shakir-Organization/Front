@@ -27,7 +27,8 @@ export default function NavbarWithToken() {
         { name: "Discover", href: "/shuffle" },
         { name: "Mes musiques", href: "/mesmusiques" },
         { name: "Rechercher des musiques", href: "/recherche" },
-        { name: "Profil", href: "/profile" },
+        { name: "Profil", href: "/profile" }, 
+        { name: "Amis", href: "/followers" },
     ];
 
     return (
@@ -69,9 +70,7 @@ export default function NavbarWithToken() {
                                 </a>
                             </li>
                         ))}
-                        <div>
-                            <Deconnexion />
-                        </div>
+                        <Deconnexion />
                     </ul>
                 </div>
                 <a
@@ -92,9 +91,7 @@ export default function NavbarWithToken() {
                             </a>
                         </li>
                     ))}
-                    <div>
-                        <Deconnexion />
-                    </div>
+                    <Deconnexion />
                 </ul>
             </div>
 
