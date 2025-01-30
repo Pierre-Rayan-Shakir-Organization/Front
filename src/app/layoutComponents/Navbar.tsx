@@ -31,7 +31,6 @@ export default function Navbar() {
             <div className="navbar-center hidden lg:flex">
                 <ul className="menu menu-horizontal px-1">
                 <li><a href="/connexion">Connexion</a></li>
-                <li><a href="/test">Test</a></li>
                 </ul>
             </div>
         </div>
