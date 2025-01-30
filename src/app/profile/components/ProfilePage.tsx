@@ -252,9 +252,16 @@ export default function ProfilePage() {
                   >
                     {isEditing ? "Annuler" : "Modifier"}
                   </MDBBtn>
-                  <div className="text-center mt-3">
+                  <div className="text-center mt-3" style={{ position: "relative" }}>
+
     {/* ✅ Image cliquable pour modifier la photo de profil */}
-    <label htmlFor="fileInput" className="cursor-pointer">
+    <label htmlFor="fileInput" className="cursor-pointer" style={{
+            display: "block",  // ✅ Le label prend toute la place
+            width: "fit-content",  // ✅ Ajuste à la taille de l'image
+            margin: "0 auto",  // ✅ Centre l'élément
+            position: "relative",  // ✅ Pour éviter d'être caché
+            zIndex: 10  // ✅ S'assure que c'est au-dessus
+        }}>
     <MDBCardImage
     src={user?.photo_profil 
         ? (user.photo_profil.startsWith("http") ? user.photo_profil : `http://localhost:3000${user.photo_profil}`)
@@ -264,10 +271,16 @@ export default function ProfilePage() {
     fluid
     onError={(e: React.SyntheticEvent<HTMLImageElement, Event>) => {
         (e.target as HTMLImageElement).src = "/DefautProfil.png"; // ✅ Fallback si l'image ne charge pas
-    }}
+    }} style={{
+      width: "150px", // ✅ Taille ajustable
+      height: "150px",
+      borderRadius: "50%",  // ✅ Cercle pour un avatar
+      objectFit: "cover",  // ✅ S'assure que l'image garde une bonne forme
+      cursor: "pointer",  // ✅ Indique que c'est cliquable
+      position: "relative", // ✅ Évite d'être sous un autre élément
+      zIndex: 10 // ✅ Passe au-dessus des autres éléments
+  }}
 />
-
-
     </label>
 
     {/* ✅ Input caché pour l'upload */}
@@ -282,7 +295,7 @@ export default function ProfilePage() {
                 handleUploadPhoto(file); // ✅ Lancer l'upload après sélection
             }
         }}
-        className="d-none"
+        style={{ display: "none" }}
     />
 </div>
 
