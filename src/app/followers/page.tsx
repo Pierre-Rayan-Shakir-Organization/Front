@@ -1,92 +1,70 @@
-"use client";
+'use client';
 
-import { useState, useEffect } from 'react';
-import { useAuth } from '@/app/contexts/AuthContext.context.tsx';
-import axios from 'axios';
-import RechercherAmis from './componants/RechercheAmis.tsx';
+import axios from "axios";
+import { useState, useEffect } from "react";
+import FriendsList from "./componants/FriendList.tsx";
+import RechercheUtilisateur from "./componants/RechercheUtilisateur.tsx";
 
-interface Utilisateur {
-  id: number;
-  nom: string;
-  prenom: string;
-  friendship_status: 'friends' | 'following' | 'followed_by' | 'not_following';
-}
+const API_URL = "http://localhost:3000";
 
-const fetchData = async (url: string, token: string) => {
-  try {
-    const response = await axios.get(url, {
-      headers: { Authorization: `Bearer ${token}` }
-    });
-    return response.data;
-  } catch (error) {
-    console.error("Erreur lors de la récupération des données", error);
-    return null;
-  }
-};
-
-const AddFriendsPage = () => {
-  const { token } = useAuth();
-  const [searchResults, setSearchResults] = useState<Utilisateur[]>([]);
-  const [following, setFollowing] = useState<Utilisateur[]>([]);
+const FriendsPage = () => {
+  const [followers, setFollowers] = useState([]);
+  const [following, setFollowing] = useState([]);
+  const [pendingRequests, setPendingRequests] = useState([]);
+  const [sentRequests, setSentRequests] = useState([]);
+  const [searchResults, setSearchResults] = useState([]);
 
   useEffect(() => {
-    if (token) {
-      fetchFollowing();
-    }
-  }, [token]);
+    fetchFriends();
+  }, []);
 
-  const fetchFollowing = async () => {
-    if (!token) return;
-    const data = await fetchData('/getFollowing', token);
-    if (data) setFollowing(data);
-  };
-
-  const handleFollow = async (userId: number) => {
-    if (!token) return;
+  const fetchFriends = async () => {
     try {
-      await axios.post(`/follow/${userId}`, {}, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      fetchFollowing();
-      updateSearchResults(userId, 'following');
-    } catch (error) {
-      console.error("Erreur lors du suivi", error);
-    }
-  };
+      const token = localStorage.getItem("token");
+      if (!token) throw new Error("Token JWT manquant");
 
-  const handleUnfollow = async (userId: number) => {
-    if (!token) return;
-    try {
-      await axios.delete(`/unfollow/${userId}`, {
-        headers: { Authorization: `Bearer ${token}` }
-      });
-      fetchFollowing();
-      updateSearchResults(userId, 'not_following');
-    } catch (error) {
-      console.error("Erreur lors du désabonnement", error);
-    }
-  };
+      const headers = { Authorization: `Bearer ${token}` };
 
-  const updateSearchResults = (userId: number, newStatus: 'friends' | 'following' | 'followed_by' | 'not_following') => {
-    setSearchResults(prevResults => 
-      prevResults.map(user => 
-        user.id === userId ? { ...user, friendship_status: newStatus } : user
-      )
-    );
-  };
+      const resFollowers = await axios.get(`${API_URL}/getFollowers`, { headers });
+      const resFollowing = await axios.get(`${API_URL}/getFollowing`, { headers });
+      const resPending = await axios.get(`${API_URL}/getFollowPending`, { headers });
+      const resSentPending = await axios.get(`${API_URL}/getFollowersPending`, { headers });
+
+      setFollowers(resFollowers.data.followers.map((friend: any) => ({ ...friend, status: "following_back" })));
+      setFollowing(resFollowing.data.following.map((friend: any) => ({ ...friend, status: "following" })));
+      setPendingRequests(resPending.data.map((friend: any) => ({ ...friend, status: "followed_by" }))); // 🔥 Correction ici
+      setSentRequests(resSentPending.data.map((friend: any) => ({ ...friend, status: "pending" }))); 
+
+    } catch (error) {
+      console.error("❌ Erreur lors du chargement des amis:", error);
+    }
+};
+
+
 
   return (
-    <div className="p-6 max-w-2xl mx-auto">
-      <h1 className="text-2xl font-bold mb-4">Ajout d'Amis</h1>
-      <RechercherAmis 
-        searchResults={searchResults} 
-        setSearchResults={setSearchResults} 
-        following={following} 
-        handleFollow={handleFollow} 
-        handleUnfollow={handleUnfollow} 
-      />
+    <div className="min-h-screen bg-gray-100 p-8">
+      <h1 className="text-2xl font-bold text-center mb-6">Réseau Social</h1>
+
+      {/* 🔥 Recherche d'utilisateurs */}
+      <RechercheUtilisateur setSearchResults={setSearchResults} />
+
+      <div className="flex flex-col md:flex-row gap-6 mt-6">
+        <FriendsList title="Followers" friends={followers} refreshFriends={fetchFriends} />
+        <FriendsList title="Following" friends={following} refreshFriends={fetchFriends} />
+        <FriendsList title="Demandes reçues en attente" friends={pendingRequests} refreshFriends={fetchFriends} />
+        <FriendsList title="Demandes envoyées en attente" friends={sentRequests} refreshFriends={fetchFriends} /> 
+      </div>
+
+      {/* 🔥 Affichage des résultats de recherche */}
+      {searchResults.length > 0 && (
+        <div className="mt-6 bg-white p-4 rounded shadow">
+          <h2 className="text-lg font-bold mb-2">Résultats de la recherche</h2>
+          <FriendsList title="Résultats" friends={searchResults} refreshFriends={fetchFriends} />
+        </div>
+      )}
     </div>
   );
 };
 
-export default AddFriendsPage;
+export default FriendsPage;
