@@ -13,7 +13,7 @@
 +++
 # Instructions pour l'installation et le démarrage du projet Front
 
-## Étape 1 : Cloner le dépôt API SPRING Test
+## Étape 1 : Cloner et suivre les instructions du dépôt API SPRING Test
 
 1. **Cloner le dépôt GitHub** dans le répertoire parent du projet. Utilisez la commande suivante dans votre terminal :
 
@@ -40,7 +40,7 @@
 1. **Lancer l'application** avec la commande suivante :
 
     ```bash
-    npm start
+    npm run dev
     ```
 
 2. **Accéder à l'application** en ouvrant votre navigateur et en vous rendant à l'adresse suivante :
