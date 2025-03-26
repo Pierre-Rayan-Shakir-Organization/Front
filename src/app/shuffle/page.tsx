@@ -1,9 +1,9 @@
 'use client';
 
 import { useState, useEffect } from "react";
-import Cards from "../components/CardComponents/Cards.tsx";
+import Cards from "../components/CardComponents/Cards";
 import axios from "axios";
-import NavbarWithToken from "../layoutComponents/NavbarWithToken.tsx";
+import NavbarWithToken from "../layoutComponents/NavbarWithToken";
 
 
 export const fetchDataDeezer = async (artist: string, track: string) => {
@@ -30,7 +30,7 @@ const fetchData = async () => {
   }
 };
 
-export default function RandomCardPage() {
+export default function Page() {
   const [musique, setMusique] = useState<any>(null);
   const [musiqueDeezer, setMusiqueDeezer] = useState<any>(null);
   const [error, setError] = useState<string | null>(null);
