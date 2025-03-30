@@ -8,9 +8,11 @@ interface ListenButtonProps {
   titre: string;
   artiste: string;
   deezerLink: string;
+  url_preview: string;
+  url_cover_album_big: string;
 }
 
-export default function ListenButton({ titre, artiste, deezerLink }: ListenButtonProps) {
+export default function ListenButton({ titre, artiste, deezerLink, url_preview, url_cover_album_big, }: ListenButtonProps) {
   const { userId } = useUser();
 
   if (!userId) return null;
@@ -26,6 +28,8 @@ export default function ListenButton({ titre, artiste, deezerLink }: ListenButto
           artiste,
           date,
           userId,
+          url_preview,
+          url_cover_album_big,
         },
         {
           headers: {

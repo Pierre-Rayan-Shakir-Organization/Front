@@ -31,6 +31,7 @@ export default function NavbarWithToken() {
         { name: "Rechercher des musiques", href: "/recherche" },
         { name: "Profil", href: "/profile" }, 
         { name: "Amis", href: "/followers" },
+        { name: "🎧 Historique", href: "/mon-historique" },
     ];
 
     return (
