@@ -49,12 +49,24 @@ export default function ListenButton({ titre, artiste, deezerLink }: ListenButto
       className="flex items-center gap-2 bg-black hover:bg-gray-800 text-white text-xs py-1 px-2 rounded-lg transition-all shadow"
       title="Écouter sur Deezer"
     >
-      <img
-        src="https://upload.wikimedia.org/wikipedia/commons/6/6b/Deezer_Logo_2019.svg"
-        alt="Logo Deezer"
-        className="h-4 w-4 object-contain"
-      />
-      <span>Écouter</span>
+<div className="flex items-center gap-2">
+  <img src="/images/deezer_logo.png" alt="Logo Deezer" className="h-6 w-6 object-contain" />
+  <span>Écouter</span>
+</div>
+      <svg
+        xmlns="http://www.w3.org/2000/svg"
+        fill="none"
+        viewBox="0 0 24 24"
+        strokeWidth={1.5}
+        stroke="currentColor"
+        className="w-4 h-4"
+      >
+        <path
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          d="M12 3v18m9-9H3"
+        />
+      </svg>
     </button>
   );
 }
