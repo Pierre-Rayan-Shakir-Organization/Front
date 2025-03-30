@@ -18,7 +18,8 @@
     "mdb-react-ui-kit": "^9.0.0",
     "next": "^15.1.4",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-toastify": "^11.0.5"
   },
   "devDependencies": {
     "@testing-library/jest-dom": "^6.6.3",

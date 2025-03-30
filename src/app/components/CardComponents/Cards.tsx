@@ -6,6 +6,8 @@ import CardButtons from "./CardButtons.tsx";
 import DeleteButton from "./DeleteButton.tsx";
 import AudioButton from "./AudioButton.tsx";
 import AddButton from "./AddButton.tsx";
+import ListenButton from "./ListenButton.tsx";
+
 
 export interface InfosCard {
   cardId: any;
@@ -40,8 +42,8 @@ export default function Cards({
   name_song,
   url_preview,
   url_cover_album_big,
-  nom = "raffoul",
-  prenom = "pierre",
+  nom = " ",
+  prenom = " ",
   audioButton = false,
   size = "h-full w-full",
   withBlock = false,
@@ -135,6 +137,15 @@ export default function Cards({
                 {audioButton && (
                   <AudioButton url_preview={url_preview} cardId={cardId} />
                 )}
+                  <ListenButton
+                    titre={name_song}
+                    artiste={name_artist}
+                    deezerLink={`https://www.deezer.com/search/${encodeURIComponent(name_artist + " " + name_song)}`}
+                    url_preview={url_preview}
+                    url_cover_album_big={url_cover_album_big}
+                  />
+
+
               </CardButtons>
             </div>
           </div>
