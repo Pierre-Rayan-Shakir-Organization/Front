@@ -42,8 +42,8 @@ export default function Cards({
   name_song,
   url_preview,
   url_cover_album_big,
-  nom = "raffoul",
-  prenom = "pierre",
+  nom = " ",
+  prenom = " ",
   audioButton = false,
   size = "h-full w-full",
   withBlock = false,
@@ -141,6 +141,8 @@ export default function Cards({
                     titre={name_song}
                     artiste={name_artist}
                     deezerLink={`https://www.deezer.com/search/${encodeURIComponent(name_artist + " " + name_song)}`}
+                    url_preview={url_preview}
+                    url_cover_album_big={url_cover_album_big}
                   />
 
 
