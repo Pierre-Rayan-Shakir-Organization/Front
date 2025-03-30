@@ -1,6 +1,8 @@
 "use client";
 import Deconnexion from "./Deconnexion.tsx";
 import React, { useState, useEffect } from "react";
+import ConnectGoogleButton from "../components/CardComponents/ConnectGoogleButton.tsx";
+
 
 export default function NavbarWithToken() {
     const [theme, setTheme] = useState<string>("light"); // État initial par défaut
@@ -97,12 +99,16 @@ export default function NavbarWithToken() {
 
             {/* Fin Navbar */}
             <div className="navbar-end">
-                {isClient && ( // Affiche le bouton seulement côté client
-                    <button onClick={toggleTheme} className="btn btn-outline">
-                        {theme === "light" ? "🌙 Mode Sombre" : "☀️ Mode Clair"}
-                    </button>
-                )}
-            </div>
+  {isClient && (
+    <>
+      <ConnectGoogleButton />
+      <button onClick={toggleTheme} className="btn btn-outline ml-2">
+        {theme === "light" ? "🌙 Mode Sombre" : "☀️ Mode Clair"}
+      </button>
+    </>
+  )}
+</div>
+
         </div>
     );
 }
