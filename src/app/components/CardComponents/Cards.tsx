@@ -7,6 +7,7 @@ import DeleteButton from "./DeleteButton.tsx";
 import AudioButton from "./AudioButton.tsx";
 import AddButton from "./AddButton.tsx";
 import ListenButton from "./ListenButton.tsx";
+import AIButton from "./AIButton.tsx";
 
 
 export interface InfosCard {
@@ -23,6 +24,7 @@ interface Buttons {
   audioButton?: boolean;
   deleteButton?: boolean;
   addButton?: boolean;
+  aiButton?: boolean;
 }
 
 interface Sizes {
@@ -49,6 +51,7 @@ export default function Cards({
   withBlock = false,
   deleteButton = false,
   addButton = false,
+  aiButton = false,
   containerStyle = "w-[220px] h-[360px] bg-sky-950 rounded-2xl", // Style par défaut
 }: CardProps) {
   const [isDragging, setIsDragging] = useState(false); // Gère l'état du drag
@@ -137,6 +140,14 @@ export default function Cards({
                 {audioButton && (
                   <AudioButton url_preview={url_preview} cardId={cardId} />
                 )}
+                {aiButton && (
+                  <AIButton 
+                    musicId={cardId} 
+                    name_artist={name_artist}
+                    name_song={name_song}
+                    url_cover_album_big={url_cover_album_big}
+                  />
+                )}
                   <ListenButton
                     titre={name_song}
                     artiste={name_artist}
@@ -188,6 +199,14 @@ export default function Cards({
               )}
               {audioButton && (
                 <AudioButton url_preview={url_preview} cardId={cardId} />
+              )}
+              {aiButton && (
+                <AIButton 
+                  musicId={cardId} 
+                  name_artist={name_artist}
+                  name_song={name_song}
+                  url_cover_album_big={url_cover_album_big}
+                />
               )}
             </CardButtons>
           </div>

@@ -67,6 +67,7 @@ export default function TableauAffichage2() {
                     audioButton={true}
                     withBlock={true}
                     deleteButton={true}
+                    aiButton={true}
                 />
             ))}
         </div>
